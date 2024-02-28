@@ -2,7 +2,7 @@
 <!-- Generic html for a single page website with a file upload box where the user can upload an .htm file -->
 <script>
 // @ts-nocheck
-
+  import Header from "../components/static/header.svelte";
   let selectedFile;
   function handleDrop(event) {
     selectedFile = event.target.files[0];
@@ -25,7 +25,7 @@
       alert('Please upload the SA_LEARNER_SERVICES.htm file');
       selectedFile = null;
     }
-    else if(selectedFile.size > 150000 || selectedFile.size < 60000) {
+    else if(selectedFile.size > 150000 || selectedFile.size < 50000) {
       alert('Please check if you are uploading the correct file SA_LEARNER_SERVICES.htm file');
       selectedFile = null;
     }
@@ -80,19 +80,29 @@
 </script>
 
 <style>
-  .upload-box {
+  #upload-box {
     border: 2px dashed #ccc;
     padding: 20px;
     text-align: center;
+    margin: 0 auto;
+    @media screen and (max-width: 600px){
+      width: 90%;
+    }
+    @media screen and (min-width: 600px) {
+      width: 60%; 
+    }
   }
 </style>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="upload-box" on:dragover={preventDefault} 
-  on:dragenter={preventDefault} on:drop={handleInsert}>
-  <h1>Upload .htm File</h1>
-    <input type="file" accept=".htm" on:change={handleDrop} />
-  {#if selectedFile}
-    <p>Selected File: {selectedFile.name}</p>
-  {/if}
+<div >
+  <Header />
+  <div id="upload-box" on:dragover={preventDefault} 
+    on:dragenter={preventDefault} on:drop={handleInsert}>
+    <h1>Upload .htm File</h1>
+      <input type="file" accept=".htm" on:change={handleDrop} />
+    {#if selectedFile}
+      <p>Selected File: {selectedFile.name}</p>
+    {/if}
+  </div>
 </div>
