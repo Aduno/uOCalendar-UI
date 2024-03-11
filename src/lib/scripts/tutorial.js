@@ -1,3 +1,5 @@
+// Should just make this a svelte component that is loaded in instead of a javascript function
+// Same with the dropbox
 import step1 from '$lib/assets/step-1.png'
 import step2 from '$lib/assets/step-2.png'
 import step3 from '$lib/assets/step-3.png'
