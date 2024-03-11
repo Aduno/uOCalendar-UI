@@ -3,6 +3,16 @@
 <script>
 // @ts-nocheck
   import Header from "../components/static/header.svelte";
+  import step1 from '$lib/assets/step-1.png'
+  import step2 from '$lib/assets/step-2.png'
+  import step3 from '$lib/assets/step-3.png'
+  import step4 from '$lib/assets/step-4.png'
+  // import arrowLeft from '$lib/assets/arrow-left.svelte'
+  // import arrowRight from '$lib/assets/arrow-right.svelte'
+  import ArrowLeft from '$lib/assets/icons/arrow-left.svelte'
+  import ArrowRight from '$lib/assets/icons/arrow-right.svelte'
+  import { onMount } from 'svelte';
+
   let selectedFile;
   function handleDrop(event) {
     selectedFile = event.target.files[0];
@@ -32,6 +42,9 @@
   }
   function uploadFile(selectedFile) {
     const formData = new FormData();
+
+    alert('The schedule is being processed. This may take 5-10 seconds. Please do not refresh the page or close the tab.');
+
     formData.append('file', selectedFile);
     fetch('https://uocalendar-a68f83215641.herokuapp.com/uocalendar', {
       method: 'POST',
@@ -77,32 +90,110 @@
       }
     });
   }
+  let currentPage = 1;
+  let tutorialContentImg = step1;
+  let tutorialContentText = 'Navigate to the "My Class Schedule" through UOZone';
+
+  const totalPages = 4;
+
+  function goToNextPage() {
+    currentPage = currentPage === totalPages ? 1 : currentPage + 1;
+    updateTutorialContent();
+  }
+
+  function goToPreviousPage() {
+    currentPage = currentPage === 1 ? totalPages : currentPage - 1;
+    updateTutorialContent();
+  }
+
+  function updateTutorialContent() {
+    switch (currentPage) {
+      case 1:
+        tutorialContentImg = step1;
+        tutorialContentText = 'Navigate to the "My Class Schedule" through UOZone and select on the weekly calendar view';
+        break;
+      case 2:
+        tutorialContentImg = step2;
+        tutorialContentText = 'Right click on an empty part of the page and click save as'
+        break;
+      case 3:
+        tutorialContentImg = step3;
+        tutorialContentText = 'Naviate to the "My Weekly Schedule_files" folder, ignoring the "My Weekly Schedule" file';
+        break;
+      case 4: 
+        tutorialContentImg = step4;
+        tutorialContentText = "Upload the SA_LEARNER_SERVICES.htm file here"
+        break;
+      default:
+        tutorialContentImg = step1;
+        currentPage = 1;
+    }
+  }
+
+  let arrows;
+  onMount(() => {
+    const uploadBox = document.getElementById('upload-box');
+    if (uploadBox) {
+      uploadBox.scrollIntoView();
+    }
+  });
 </script>
 
 <style>
+  .btn {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px;
+    text-decoration: none;
+  }
   #upload-box {
     border: 2px dashed #ccc;
     padding: 20px;
     text-align: center;
-    margin: 0 auto;
     @media screen and (max-width: 600px){
-      width: 90%;
+      width: 100%;
     }
-    @media screen and (min-width: 600px) {
-      width: 60%; 
+  }
+  #tutorial-box {
+    @media screen and (max-width: 600px){
+      width: 100%;
     }
   }
 </style>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div >
+<div class="h-screen">
   <Header />
-  <div id="upload-box" on:dragover={preventDefault} 
-    on:dragenter={preventDefault} on:drop={handleInsert}>
-    <h1>Upload .htm File</h1>
-      <input type="file" accept=".htm" on:change={handleDrop} />
-    {#if selectedFile}
-      <p>Selected File: {selectedFile.name}</p>
-    {/if}
+  <div class="flex h-5/6">
+    <div id="upload-box-container" class="flex-auto sm: w-full lg:w-6/12 self-center" on:dragover={preventDefault} 
+      on:dragenter={preventDefault} on:drop={handleInsert}>
+      <div id="upload-box" class="h-[600px] m-10 flex flex-col items-center text-center justify-center">
+        <h1>Drag and drop <b>or</b> upload .htm File</h1>
+        <input class="text-sm pl-12" id="files" type="file" accept=".htm" on:change={handleDrop}>        
+        {#if selectedFile}
+          <p>Uploaded file: {selectedFile.name}</p>
+        {/if}
+      </div>
+    </div>
+    <div id="tutorial-box" class="flex-row flex-auto w-5/12 sm:w-full lg:w-5/12 self-center">
+      <div>      
+        <h1 class="text-center text-xl font-bold">How to use</h1>
+        <hr>
+        <p class="text-center p-2">{tutorialContentText}</p>
+        <hr>
+      </div>
+      <div class="flex justify-center items-center h-[400px]">
+        <img class="justify-self-center flex-1 px-20" src={tutorialContentImg} alt="Tutorial images"/>
+      </div>
+      <div class="flex justify-evenly">
+        <!-- Change this to proper icons -->
+        <button class="nav-btn" on:click={goToPreviousPage}><ArrowLeft/></button>
+        <p class="text-center text-sm p-2">Page {currentPage} of {totalPages}</p>
+        <button class="nav-btn" on:click={goToNextPage}><ArrowRight/></button>
+      </div>
+    </div>
   </div>
 </div>
