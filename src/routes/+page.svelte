@@ -58,12 +58,16 @@
     .then(blob => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
+      a.innerText = "Download Schedule";
+      a.classList.add('text-base');
+      // Manually adding style here because the class defintion in css is not being applied...
+      a.setAttribute('style','padding: 2px 5px 2px 5px; border: 1px solid #e5e7eb;border-radius: 5px;margin: 5px;background-color:rgb(230,230,230);')
+      a.addEventListener("mouseover", ()=> { a.style.backgroundColor = "rgb(210,210,210)";});
+      a.addEventListener("mouseout", ()=> { a.style.backgroundColor = "rgb(230,230,230)";});
+      const uploadBox = document.getElementById("upload-box");
       a.href = url;
       a.download = 'My Schedule.ics'; 
-      document.body.appendChild(a); 
-      a.click();
-      a.remove();  
-      console.log('Success');
+      uploadBox.appendChild(a); 
     })
     .catch(error => {
       console.error('Error:', error);
@@ -166,7 +170,7 @@
   <div class="flex h-5/6">
     <div id="upload-box-container" class="flex-auto sm: w-full lg:w-6/12 self-center" on:dragover={preventDefault} 
       on:dragenter={preventDefault} on:drop={handleInsert}>
-      <div id="upload-box" class="h-[600px] m-10 flex flex-col items-center text-center justify-center">
+      <div id="upload-box" class="h-[500px] m-10 flex flex-col items-center text-center justify-center">
         <h1>Drag and drop <b>or</b> upload .htm File</h1>
         <input class="text-sm pl-12" id="files" type="file" accept=".htm" on:change={handleDrop}>        
         {#if selectedFile}
