@@ -110,7 +110,7 @@
     switch (currentPage) {
       case 1:
         tutorialContentImg = step1;
-        tutorialContentText = 'Navigate to the "My Class Schedule" through UOZone and select on the weekly calendar view';
+        tutorialContentText = 'Navigate to the "My Class Schedule" through UOZone. Ensure it is in the "List View"';
         break;
       case 2:
         tutorialContentImg = step2;
@@ -130,7 +130,6 @@
     }
   }
 
-  let arrows;
   onMount(() => {
     const uploadBox = document.getElementById('upload-box');
     if (uploadBox) {
@@ -140,15 +139,6 @@
 </script>
 
 <style>
-  .btn {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    font-weight: bold;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 3px;
-    text-decoration: none;
-  }
   #upload-box {
     border: 2px dashed #ccc;
     padding: 20px;
