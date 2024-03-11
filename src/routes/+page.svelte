@@ -7,8 +7,6 @@
   import step2 from '$lib/assets/step-2.png'
   import step3 from '$lib/assets/step-3.png'
   import step4 from '$lib/assets/step-4.png'
-  // import arrowLeft from '$lib/assets/arrow-left.svelte'
-  // import arrowRight from '$lib/assets/arrow-right.svelte'
   import ArrowLeft from '$lib/assets/icons/arrow-left.svelte'
   import ArrowRight from '$lib/assets/icons/arrow-right.svelte'
   import { onMount } from 'svelte';
@@ -189,7 +187,6 @@
         <img class="justify-self-center flex-1 px-20" src={tutorialContentImg} alt="Tutorial images"/>
       </div>
       <div class="flex justify-evenly">
-        <!-- Change this to proper icons -->
         <button class="nav-btn" on:click={goToPreviousPage}><ArrowLeft/></button>
         <p class="text-center text-sm p-2">Page {currentPage} of {totalPages}</p>
         <button class="nav-btn" on:click={goToNextPage}><ArrowRight/></button>
