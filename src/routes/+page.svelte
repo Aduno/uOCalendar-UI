@@ -82,7 +82,9 @@
           })
           .catch(error => {
             console.error('Error:', error);
-            alert('There was an error sending the report. Please contact the developer directly through the contact form');
+            alert(`There was an error sending the report. Please contact the developer directly through the contact form
+              https://docs.google.com/forms/d/e/1FAIpQLScyzZdK6-fiBthyJtWEeFqBTpmPzB1l-EEljCXq6ShfdGYlsg/viewform?usp=sf_link
+              `);
           });
         }
       }
