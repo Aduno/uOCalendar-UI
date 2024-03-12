@@ -195,8 +195,7 @@
       </div>
     </div>
   </div>
-  <p class="block text-center">Check out <a class="text-sky-700" href="www.uschedule.me">uschedule.me</a> 
-    for easier course planning and also export capabilities!
+  <p class="block text-center">Check out <a class="text-sky-700" href="www.uschedule.me">uschedule.me</a> for easier course planning and also export capabilities!
   </p>
   <p class="block text-center">For any issues: <a class="text-sky-700" href="https://forms.gle/6Z3c4hQYrrsp5nkn7">Contact form</a>
   </p>
