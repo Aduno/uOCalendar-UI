@@ -7,6 +7,9 @@
   import step2 from '$lib/assets/step-2.png'
   import step3 from '$lib/assets/step-3.png'
   import step4 from '$lib/assets/step-4.png'
+  import step5 from '$lib/assets/step-5.png'
+  import step6 from '$lib/assets/step-6.png'
+  import step7 from '$lib/assets/step-7.png'
   import ArrowLeft from '$lib/assets/icons/arrow-left.svelte'
   import ArrowRight from '$lib/assets/icons/arrow-right.svelte'
   import { onMount } from 'svelte';
@@ -104,7 +107,7 @@
   let tutorialContentImg = step1;
   let tutorialContentText = 'Navigate to the "My Class Schedule" through UOZone';
 
-  const totalPages = 4;
+  const totalPages = 7;
 
   function goToNextPage() {
     currentPage = currentPage === totalPages ? 1 : currentPage + 1;
@@ -128,11 +131,23 @@
         break;
       case 3:
         tutorialContentImg = step3;
-        tutorialContentText = 'Naviate to the "My Weekly Schedule_files" folder, ignoring the "My Weekly Schedule" file';
+        tutorialContentText = 'Navigate to the "My Weekly Schedule_files" folder, ignoring the "My Weekly Schedule" file';
         break;
       case 4: 
         tutorialContentImg = step4;
         tutorialContentText = "Upload the SA_LEARNER_SERVICES.htm file here"
+        break;
+      case 5:
+        tutorialContentImg = step5;
+        tutorialContentText = "Click on the 'Download Schedule' link to download the .ics file"
+        break;
+      case 6:
+        tutorialContentImg = step6;
+        tutorialContentText = "Go to google calendar and create new calendar. Same steps apply for different calendar apps"
+        break;
+      case 7:
+        tutorialContentImg = step7;
+        tutorialContentText = "Import the downloaded schedule to the calendar you created"
         break;
       default:
         tutorialContentImg = step1;
@@ -195,7 +210,7 @@
       </div>
     </div>
   </div>
-  <p class="block text-center">Check out <a class="text-sky-700" href="www.uschedule.me">uschedule.me</a> for easier course planning with ics export capabilities!
+  <p class="block text-center">Check out <a class="text-sky-700" href="https://www.uschedule.me">uschedule.me</a> for easier course planning with ics export capabilities!
   </p>
   <p class="block text-center">For any issues: <a class="text-sky-700" href="https://forms.gle/6Z3c4hQYrrsp5nkn7">Contact form</a>
   </p>
