@@ -9,7 +9,6 @@
   import step4 from '$lib/assets/step-4.png'
   import ArrowLeft from '$lib/assets/icons/arrow-left.svelte'
   import ArrowRight from '$lib/assets/icons/arrow-right.svelte'
-  import ExternalLink from "$lib/assets/icons/external-link.svelte";
   import { onMount } from 'svelte';
 
   let selectedFile;
@@ -196,10 +195,9 @@
       </div>
     </div>
   </div>
-  <div class="flex justify-center">
-    <a class="text-slate-500 flex" href="https://forms.gle/6Z3c4hQYrrsp5nkn7">
-      <p class="mr-0.5">Contact</p>
-      <span class="block m-auto"><ExternalLink/></span>
-    </a>
-  </div>
+  <p class="block text-center">Check out <a class="text-sky-700" href="www.uschedule.me">uschedule.me</a> 
+    for easier course planning and also export capabilities!
+  </p>
+  <p class="block text-center">For any issues: <a class="text-sky-700" href="https://forms.gle/6Z3c4hQYrrsp5nkn7">Contact form</a>
+  </p>
 </div>
