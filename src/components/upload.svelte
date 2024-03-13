@@ -21,7 +21,7 @@
   }
 
   function checkFile(selectedFile) {
-    if (selectedFile.name.split('.').pop() !== 'htm') {
+    if (selectedFile.name.split('.').pop() !== 'htm' && selectedFile.name.split('.').pop() !== 'html'){
       alert('Please upload the SA_LEARNER_SERVICES.htm file');
       selectedFile = null;
     }
@@ -116,7 +116,7 @@
 on:dragenter={preventDefault} on:drop={handleInsert}>
   <div id="upload-box" class="h-[500px] m-10 flex flex-col items-center text-center justify-center">
   <h1>Drag and drop <b>or</b> upload .htm File</h1>
-  <input class="text-sm pl-12" id="files" type="file" accept=".htm" on:change={handleDrop}>        
+  <input class="text-sm pl-12" id="files" type="file" accept=".htm, .html" on:change={handleDrop}>        
   {#if selectedFile}
       <p>Uploaded file: {selectedFile.name}</p>
   {/if}
