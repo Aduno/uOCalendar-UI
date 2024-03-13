@@ -1,6 +1,5 @@
 <script>
   import { onMount } from 'svelte';
-  import './header.css';
   import geegeeIcon from '$lib/assets/geegee.png'
 </script>
 <style>
